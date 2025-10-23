@@ -101,7 +101,9 @@ app.timer('HttpTriggerTranslationFunction', {
         for (let k = 0; k < _filesWithExtensions.remainingFiles.length; k++) {
             const _file = _filesWithExtensions.remainingFiles[k].name;
             const _ENVIRONMENT = _filesWithExtensions.remainingFiles[k].ENVIRONMENT;
-            const _url = `https://apptranslationsproduction.azurewebsites.net/api/httptranslationmiddleware?fileToTranslate=${_file}&env=${_ENVIRONMENT}`;
+            // const _url = `https://apptranslationsproduction.azurewebsites.net/api/httptranslationmiddleware?fileToTranslate=${_file}&env=${_ENVIRONMENT}`;
+            const _baseUrl = process.env["APP_TRANSLATIONS_BASE_URL_"+branch];
+            const _url = `${_baseUrl}/httptranslationmiddleware?fileToTranslate=${_file}&env=${_ENVIRONMENT}`;
             if ( _file.includes( "parsed" ) ) {
             }else{
                 urls.push( _url );
